@@ -9,11 +9,23 @@ module.exports = {
         './src/index.jsx'
     ],
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'babel'
-        }]
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'eslint-loader',
+                exclude: /node_modules/}
+        ],
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel'
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
+            }
+        ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -25,6 +37,9 @@ module.exports = {
     },
     devServer: {
         contentBase: './dist'
+    },
+    eslint: {
+        configFile: __dirname + '/.eslintrc.js'
     },
     plugins: [
         new HtmlWebpackPlugin({

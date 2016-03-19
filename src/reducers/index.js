@@ -10,7 +10,7 @@ function anAction(state, newState) {
 
 export default function (state = Map(), action) {
     if (responseMap[action.type]) {
-        return responseMap[action.type](state, action.state)
+        return responseMap[action.type](state, action.state);
     } else {
         return state;
     }
